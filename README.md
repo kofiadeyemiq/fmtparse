@@ -44,7 +44,7 @@ took about 11x longer than reusing a `Compile`d `*Parser`, across three runs.
 ## Installation
 
 ```sh
-go get github.com/__GH_OWNER__/fmtparse
+go get github.com/kofiadeyemiq/fmtparse
 ```
 
 Requires Go 1.23, because `Parser.FindAll` returns an `iter.Seq[*Result]`

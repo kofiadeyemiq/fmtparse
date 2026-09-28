@@ -1,3 +1,3 @@
-module github.com/__GH_OWNER__/fmtparse
+module github.com/kofiadeyemiq/fmtparse
 
 go 1.23
