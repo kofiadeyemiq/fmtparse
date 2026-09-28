@@ -1,0 +1,2344 @@
+[
+ {
+  "format": "{}",
+  "input": "hello",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "hello"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{}",
+  "input": "",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{} {}",
+  "input": "hello world",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "hello"
+   },
+   {
+    "k": "str",
+    "v": "world"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{name}",
+  "input": "Alice",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "name": {
+    "k": "str",
+    "v": "Alice"
+   }
+  }
+ },
+ {
+  "format": "{name} scored {score:d} points",
+  "input": "Alice scored 42 points",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "name": {
+    "k": "str",
+    "v": "Alice"
+   },
+   "score": {
+    "k": "int",
+    "v": 42
+   }
+  }
+ },
+ {
+  "format": "{name} scored {score:d} points",
+  "input": "Alice scored forty points",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{}-{}-{}",
+  "input": "2020-01-15",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "2020"
+   },
+   {
+    "k": "str",
+    "v": "01"
+   },
+   {
+    "k": "str",
+    "v": "15"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "Hello, {}!",
+  "input": "Hello, World!",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "World"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "Hello, {}!",
+  "input": "Hello World!",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{{literal}}",
+  "input": "{literal}",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {}
+ },
+ {
+  "format": "{{{}}}",
+  "input": "{x}",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "x"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "a{{b}}c",
+  "input": "a{b}c",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {}
+ },
+ {
+  "format": "{a.b} {a.c}",
+  "input": "1 2",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "a.b": {
+    "k": "str",
+    "v": "1"
+   },
+   "a.c": {
+    "k": "str",
+    "v": "2"
+   }
+  }
+ },
+ {
+  "format": "{a[b]} {a[c]}",
+  "input": "1 2",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "a": {
+    "k": "map",
+    "v": {
+     "b": {
+      "k": "str",
+      "v": "1"
+     },
+     "c": {
+      "k": "str",
+      "v": "2"
+     }
+    }
+   }
+  }
+ },
+ {
+  "format": "{a[b][c]}",
+  "input": "42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "a": {
+    "k": "map",
+    "v": {
+     "b": {
+      "k": "map",
+      "v": {
+       "c": {
+        "k": "str",
+        "v": "42"
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ {
+  "format": "{a.b.c}",
+  "input": "hi",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "a.b.c": {
+    "k": "str",
+    "v": "hi"
+   }
+  }
+ },
+ {
+  "format": "{x.y} and {a[k]}",
+  "input": "foo and bar",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "x.y": {
+    "k": "str",
+    "v": "foo"
+   },
+   "a": {
+    "k": "map",
+    "v": {
+     "k": {
+      "k": "str",
+      "v": "bar"
+     }
+    }
+   }
+  }
+ },
+ {
+  "format": "{a}-{a}",
+  "input": "x-x",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "a": {
+    "k": "str",
+    "v": "x"
+   }
+  }
+ },
+ {
+  "format": "{a}-{a}",
+  "input": "x-y",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{a:d}-{a:d}",
+  "input": "5-5",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "a": {
+    "k": "int",
+    "v": 5
+   }
+  }
+ },
+ {
+  "format": "{a:d}-{a:d}",
+  "input": "5-6",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:>10d}",
+  "input": "        42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:<10d}",
+  "input": "42        ",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:^10d}",
+  "input": "    42    ",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:*>10d}",
+  "input": "********42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:*<10d}",
+  "input": "42********",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:*^10d}",
+  "input": "****42****",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:0>5d}",
+  "input": "00042",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:05d}",
+  "input": "00042",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:>5d}",
+  "input": "   42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:.5s}",
+  "input": "hello",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:.3s}",
+  "input": "hello",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:10.3s}",
+  "input": "       hel",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:.5}",
+  "input": "hello world",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:10}",
+  "input": "hello     ",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "hello     "
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "-42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": -42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "+42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "0",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "007",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 7
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "0x1A",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 26
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "0X1a",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 26
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "-0x1A",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": -26
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "0o17",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 15
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "0b101",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 5
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "  42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "1a2b",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:n}",
+  "input": "1,234,567",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 1234567
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:n}",
+  "input": "1.234.567",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 1234567
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:n}",
+  "input": "1234567",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:n}",
+  "input": "-1,234",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": -1234
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:x}",
+  "input": "1a",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 26
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:X}",
+  "input": "1a",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 26
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:x}",
+  "input": "ff",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 255
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:X}",
+  "input": "ff",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 255
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:x}",
+  "input": "FF",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 255
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:X}",
+  "input": "FF",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 255
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:x}",
+  "input": "0xff",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 255
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:X}",
+  "input": "0xff",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 255
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:x}",
+  "input": "-1a",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": -26
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:X}",
+  "input": "-1a",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": -26
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:x}",
+  "input": "xyz",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:X}",
+  "input": "xyz",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:o}",
+  "input": "17",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 15
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:o}",
+  "input": "0o17",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 15
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:o}",
+  "input": "8",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:o}",
+  "input": "0",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:b}",
+  "input": "101",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 5
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:b}",
+  "input": "0b101",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 5
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:b}",
+  "input": "2",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:f}",
+  "input": "3.14",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 3.14
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:F}",
+  "input": "3.14",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 3.14
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:f}",
+  "input": "-3.14",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": -3.14
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:F}",
+  "input": "-3.14",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": -3.14
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:f}",
+  "input": "0.0",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 0.0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:F}",
+  "input": "0.0",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 0.0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:f}",
+  "input": "nan",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "nan"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:F}",
+  "input": "nan",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "nan"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:f}",
+  "input": "NAN",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "nan"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:F}",
+  "input": "NAN",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "nan"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:f}",
+  "input": "inf",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "inf"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:F}",
+  "input": "inf",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "inf"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:f}",
+  "input": "INF",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "inf"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:F}",
+  "input": "INF",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "inf"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:f}",
+  "input": "-inf",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "-inf"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:F}",
+  "input": "-inf",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "-inf"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:f}",
+  "input": "3",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:F}",
+  "input": "3",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:f}",
+  "input": "3.",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:F}",
+  "input": "3.",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:e}",
+  "input": "1.5e10",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 15000000000.0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:e}",
+  "input": "1.5E-10",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 1.5e-10
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:e}",
+  "input": "-2.0e+5",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": -200000.0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:e}",
+  "input": "nan",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "nan"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:e}",
+  "input": "inf",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "inf"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:g}",
+  "input": "1.5e10",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 15000000000.0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:g}",
+  "input": "42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 42.0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:g}",
+  "input": "42.5",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 42.5
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:g}",
+  "input": "nan",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "nan"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:g}",
+  "input": "inf",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": "inf"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:%}",
+  "input": "50%",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 0.5
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:%}",
+  "input": "3.5%",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 0.035
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:%}",
+  "input": "100%",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 1.0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:.0f}",
+  "input": "20",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 20.0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:.0f}",
+  "input": "20.0",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:w}",
+  "input": "hello_world123",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "hello_world123"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:w}",
+  "input": "hello world",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:W}",
+  "input": "!!!",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "!!!"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:W}",
+  "input": "abc",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:l}",
+  "input": "HelloWorld",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "HelloWorld"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:l}",
+  "input": "Hello World",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:s}",
+  "input": "   ",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "   "
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:s}",
+  "input": "hi",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:S}",
+  "input": "hi",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "hi"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:S}",
+  "input": "  ",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "HELLO {}",
+  "input": "hello world",
+  "case_sensitive": true,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "HELLO {}",
+  "input": "HELLO world",
+  "case_sensitive": true,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "world"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "HELLO {}",
+  "input": "hello world",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "world"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:l}",
+  "input": "hello",
+  "case_sensitive": true,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "hello"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:ti}",
+  "input": "2013-01-01 12:30:45",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2013,
+    "month": 1,
+    "day": 1,
+    "hour": 12,
+    "minute": 30,
+    "second": 45,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:ti}",
+  "input": "2013-01-01T12:30:45Z",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2013,
+    "month": 1,
+    "day": 1,
+    "hour": 12,
+    "minute": 30,
+    "second": 45,
+    "micro": 0,
+    "tz_minutes": 0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:ti}",
+  "input": "2013-01-01T12:30:45.123456+05:30",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2013,
+    "month": 1,
+    "day": 1,
+    "hour": 12,
+    "minute": 30,
+    "second": 45,
+    "micro": 123456,
+    "tz_minutes": 330
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:ti}",
+  "input": "2013-01-01",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2013,
+    "month": 1,
+    "day": 1,
+    "hour": 0,
+    "minute": 0,
+    "second": 0,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:te}",
+  "input": "Mon, 21 Nov 2016 13:45:28 +0000",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2016,
+    "month": 11,
+    "day": 21,
+    "hour": 13,
+    "minute": 45,
+    "second": 28,
+    "micro": 0,
+    "tz_minutes": 0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:te}",
+  "input": "21 Nov 2016 13:45:28 +0000",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2016,
+    "month": 11,
+    "day": 21,
+    "hour": 13,
+    "minute": 45,
+    "second": 28,
+    "micro": 0,
+    "tz_minutes": 0
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:tg}",
+  "input": "21-11-2016 13:45 +0100",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2016,
+    "month": 11,
+    "day": 21,
+    "hour": 13,
+    "minute": 45,
+    "second": 0,
+    "micro": 0,
+    "tz_minutes": 60
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:tg}",
+  "input": "21-Nov-2016",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2016,
+    "month": 11,
+    "day": 21,
+    "hour": 0,
+    "minute": 0,
+    "second": 0,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:tg}",
+  "input": "5/6/2013 12:15 AM",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2013,
+    "month": 6,
+    "day": 5,
+    "hour": 0,
+    "minute": 15,
+    "second": 0,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:ta}",
+  "input": "11-21-2016 1:45 PM",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2016,
+    "month": 11,
+    "day": 21,
+    "hour": 13,
+    "minute": 45,
+    "second": 0,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:ta}",
+  "input": "Nov-21-2016",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2016,
+    "month": 11,
+    "day": 21,
+    "hour": 0,
+    "minute": 0,
+    "second": 0,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:th}",
+  "input": "10/Oct/2000:13:55:36 -0700",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2000,
+    "month": 10,
+    "day": 10,
+    "hour": 13,
+    "minute": 55,
+    "second": 36,
+    "micro": 0,
+    "tz_minutes": -420
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:tc}",
+  "input": "Sun Jun 20 23:21:05 1993",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 1993,
+    "month": 6,
+    "day": 20,
+    "hour": 23,
+    "minute": 21,
+    "second": 5,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:tt}",
+  "input": "12:15 AM",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "time",
+    "hour": 0,
+    "minute": 15,
+    "second": 0,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:tt}",
+  "input": "12:15 PM",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "time",
+    "hour": 12,
+    "minute": 15,
+    "second": 0,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:tt}",
+  "input": "23:59:59",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "time",
+    "hour": 23,
+    "minute": 59,
+    "second": 59,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:tt}",
+  "input": "",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "time",
+    "hour": 0,
+    "minute": 0,
+    "second": 0,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "hello {}!",
+  "input": "say hello world!",
+  "case_sensitive": false,
+  "op": "search",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "world"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "abc 42 def",
+  "case_sensitive": false,
+  "op": "search",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:d}",
+  "input": "no digits here",
+  "case_sensitive": false,
+  "op": "search",
+  "match": false
+ },
+ {
+  "format": "{}-{}-{}",
+  "input": "2020-01",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:d}",
+  "input": "not a number",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "exact {} match",
+  "input": "exact xyz matches",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{a}-{b}",
+  "input": "x",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:5d}",
+  "input": "123456",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:+d}",
+  "input": "+42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:+d}",
+  "input": "-42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": -42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:+d}",
+  "input": "42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{: d}",
+  "input": " 42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{: d}",
+  "input": "-42",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": -42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:8.2f}",
+  "input": "    3.14",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 3.14
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:<8.2f}x",
+  "input": "3.14    x",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 3.14
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:0=8d}",
+  "input": "00000042",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:0=8d}",
+  "input": "-0000042",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": -42
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:D}",
+  "input": "abc",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "abc"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:D}",
+  "input": "123",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{a-b}",
+  "input": "1",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "a-b": {
+    "k": "str",
+    "v": "1"
+   }
+  }
+ },
+ {
+  "format": "{a_b}",
+  "input": "1",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "a_b": {
+    "k": "str",
+    "v": "1"
+   }
+  }
+ },
+ {
+  "format": "{a_b}-{a_b}",
+  "input": "1-1",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [],
+  "named": {
+   "a_b": {
+    "k": "str",
+    "v": "1"
+   }
+  }
+ },
+ {
+  "format": "{a_b}-{a_b}",
+  "input": "1-2",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:%}",
+  "input": "-5%",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": -0.05
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:.2%}",
+  "input": "12.34%",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": 0.1234
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:f}",
+  "input": "-0.5",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": -0.5
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:e}",
+  "input": "-1.5e-10",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "float",
+    "v": -1.5e-10
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:tg}",
+  "input": "21-Nov-2016",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2016,
+    "month": 11,
+    "day": 21,
+    "hour": 0,
+    "minute": 0,
+    "second": 0,
+    "micro": 0,
+    "tz_minutes": null
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:th}",
+  "input": "10/Oct/2000:13:55:36 -0700",
+  "case_sensitive": false,
+  "op": "search",
+  "match": true,
+  "fixed": [
+   {
+    "k": "datetime",
+    "year": 2000,
+    "month": 10,
+    "day": 10,
+    "hour": 13,
+    "minute": 55,
+    "second": 36,
+    "micro": 0,
+    "tz_minutes": -420
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "a{:d}b{:d}c",
+  "input": "a1b2c",
+  "case_sensitive": false,
+  "op": "search",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 1
+   },
+   {
+    "k": "int",
+    "v": 2
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "<{}>",
+  "input": "before <inside> after",
+  "case_sensitive": false,
+  "op": "search",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "inside"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "caf\u00e9 {}",
+  "input": "caf\u00e9 noir",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "noir"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:5}",
+  "input": "abcde",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "abcde"
+   }
+  ],
+  "named": {}
+ },
+ {
+  "format": "{:.2}",
+  "input": "abcdef",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{} likes {name}",
+  "input": "Bob likes pizza",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "str",
+    "v": "Bob"
+   }
+  ],
+  "named": {
+   "name": {
+    "k": "str",
+    "v": "pizza"
+   }
+  }
+ },
+ {
+  "format": "{0} and {1}",
+  "input": "1",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": false
+ },
+ {
+  "format": "{:d} and {:d}",
+  "input": "1 and 2",
+  "case_sensitive": false,
+  "op": "parse",
+  "match": true,
+  "fixed": [
+   {
+    "k": "int",
+    "v": 1
+   },
+   {
+    "k": "int",
+    "v": 2
+   }
+  ],
+  "named": {}
+ }
+]

@@ -1,0 +1,6 @@
+/fmtparse
+/fmtparse.exe
+*.test
+*.out
+coverage.txt
+coverage.html
